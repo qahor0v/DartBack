@@ -121,6 +121,7 @@ class CompanyDatabaseServices extends CompanyDatabaseServicesBase {
   ''');
 
     statement.execute([
+      company.id,
       company.username,
       company.email,
       company.password,

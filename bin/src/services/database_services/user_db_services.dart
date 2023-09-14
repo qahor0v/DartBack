@@ -56,6 +56,7 @@ class UserDatabaseServices extends UserDatabaseServicesBase {
   ''');
 
     statement.execute([
+      user.id,
       user.lastName,
       user.firstName,
       user.email,
@@ -90,7 +91,8 @@ class UserDatabaseServices extends UserDatabaseServicesBase {
 
   @override
   User? getUserByEmail(String email) {
-    final statement = database.prepare('SELECT * FROM $tableName WHERE email = ?');
+    final statement =
+        database.prepare('SELECT * FROM $tableName WHERE email = ?');
     final results = statement.select([email]);
     statement.dispose();
     if (results.isNotEmpty) {

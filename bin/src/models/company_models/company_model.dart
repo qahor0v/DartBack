@@ -39,7 +39,7 @@ class Company {
       registeredTime: json['registeredTime'],
       description: json['description'],
       image: json['image'],
-      rating: json['rating'].toDouble(),
+      rating: double.parse(json['rating']),
       subscribes: json['subscribes'],
     );
   }
