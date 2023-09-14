@@ -16,9 +16,9 @@ abstract class UserDatabaseServicesBase {
 
   void deleteUser(String id);
 
-  getUserByPhoneNumber(String phoneNumber);
+  User? getUserByPhoneNumber(String phoneNumber);
 
-  getUserByEmail(String email);
+  User? getUserByEmail(String email);
 
-  getUserById(String id);
+  User? getUserById(String id);
 }

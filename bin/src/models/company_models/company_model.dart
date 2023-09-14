@@ -1,7 +1,9 @@
 class Company {
   String id;
   String username;
-  String name;
+  String email;
+  String phoneNumber;
+  String password;
   String title;
   String slogan;
   String registeredTime;
@@ -13,7 +15,7 @@ class Company {
   Company({
     required this.id,
     required this.username,
-    required this.name,
+    required this.password,
     required this.title,
     required this.slogan,
     required this.registeredTime,
@@ -21,28 +23,32 @@ class Company {
     required this.image,
     required this.rating,
     required this.subscribes,
+    required this.email,
+    required this.phoneNumber,
   });
 
-   factory Company.fromJson(Map<String, dynamic> json) {
+  factory Company.fromJson(Map<String, dynamic> json) {
     return Company(
       id: json['id'],
       username: json['username'],
-      name: json['name'],
+      phoneNumber: json['phoneNumber'],
+      email: json['email'],
+      password: json['password'],
       title: json['title'],
       slogan: json['slogan'],
       registeredTime: json['registeredTime'],
       description: json['description'],
       image: json['image'],
       rating: json['rating'].toDouble(),
-       subscribes: json['subscribes'],
+      subscribes: json['subscribes'],
     );
   }
 
-   Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'id': id,
       'username': username,
-      'name': name,
+      'password': password,
       'title': title,
       'slogan': slogan,
       'registeredTime': registeredTime,
@@ -50,6 +56,8 @@ class Company {
       'image': image,
       'rating': rating,
       'subscribes': subscribes,
+      'phoneNumber': phoneNumber,
+      'email': email,
     };
   }
 }
