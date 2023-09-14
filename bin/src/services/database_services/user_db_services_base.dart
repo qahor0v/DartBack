@@ -4,6 +4,7 @@ import '../../constants/db_paths.dart';
 import '../../models/user_models/user_model.dart';
 
 abstract class UserDatabaseServicesBase {
+  final String tableName = 'users';
   final database = sqlite3.open(DatabasePaths.usersDbMain);
 
   void initDatabase();

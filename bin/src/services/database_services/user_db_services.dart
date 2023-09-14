@@ -6,7 +6,7 @@ class UserDatabaseServices extends UserDatabaseServicesBase {
   @override
   void initDatabase() {
     database.execute('''
-    CREATE TABLE IF NOT EXISTS users (
+    CREATE TABLE IF NOT EXISTS $tableName (
       id TEXT,
       lastName TEXT,
       firstName TEXT,
@@ -26,7 +26,7 @@ class UserDatabaseServices extends UserDatabaseServicesBase {
   @override
   void addUser(User user) {
     final statement = database.prepare('''
-    INSERT INTO users (
+    INSERT INTO $tableName (
       id, lastName, firstName, email, password, phoneNumber, 
       profileImage, profileRegisterTime
     )
@@ -49,7 +49,7 @@ class UserDatabaseServices extends UserDatabaseServicesBase {
   @override
   void updateUser(User user) {
     final statement = database.prepare('''
-    UPDATE users
+    UPDATE $tableName
     SET lastName = ?, firstName = ?, email = ?, password = ?, 
         phoneNumber = ?, profileImage = ?, profileRegisterTime = ?
     WHERE id = ?
@@ -70,7 +70,7 @@ class UserDatabaseServices extends UserDatabaseServicesBase {
 
   @override
   void deleteUser(String id) {
-    final statement = database.prepare('DELETE FROM users WHERE id = ?');
+    final statement = database.prepare('DELETE FROM $tableName WHERE id = ?');
     statement.execute([id]);
     log("user deleted from users.db");
     statement.dispose();
@@ -79,7 +79,7 @@ class UserDatabaseServices extends UserDatabaseServicesBase {
   @override
   User? getUserByPhoneNumber(String phoneNumber) {
     final statement =
-        database.prepare('SELECT * FROM users WHERE phoneNumber = ?');
+        database.prepare('SELECT * FROM $tableName WHERE phoneNumber = ?');
     final results = statement.select([phoneNumber]);
     statement.dispose();
     if (results.isNotEmpty) {
@@ -90,7 +90,7 @@ class UserDatabaseServices extends UserDatabaseServicesBase {
 
   @override
   User? getUserByEmail(String email) {
-    final statement = database.prepare('SELECT * FROM users WHERE email = ?');
+    final statement = database.prepare('SELECT * FROM $tableName WHERE email = ?');
     final results = statement.select([email]);
     statement.dispose();
     if (results.isNotEmpty) {
@@ -101,7 +101,7 @@ class UserDatabaseServices extends UserDatabaseServicesBase {
 
   @override
   User? getUserById(String id) {
-    final statement = database.prepare('SELECT * FROM users WHERE id = ?');
+    final statement = database.prepare('SELECT * FROM $tableName WHERE id = ?');
     final results = statement.select([id]);
     statement.dispose();
     if (results.isNotEmpty) {

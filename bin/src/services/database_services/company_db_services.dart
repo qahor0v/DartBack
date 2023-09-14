@@ -7,7 +7,7 @@ class CompanyDatabaseServices extends CompanyDatabaseServicesBase {
   @override
   void initDatabase() {
     database.execute('''
-    CREATE TABLE IF NOT EXISTS users (
+    CREATE TABLE IF NOT EXISTS $tableName (
       id TEXT,
       username TEXT,
       email TEXT,
@@ -29,31 +29,111 @@ class CompanyDatabaseServices extends CompanyDatabaseServicesBase {
   void disposeDatabase() => database.dispose();
 
   @override
-  void addCompany(Company company) {}
+  void addCompany(Company company) {
+    final statement = database.prepare('''
+    INSERT INTO $tableName (
+      id, username, email, password, phoneNumber, 
+      title, slogan, registeredTime, description, 
+      image, rating, subscribes
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ''');
+    statement.execute([
+      company.id,
+      company.username,
+      company.email,
+      company.password,
+      company.phoneNumber,
+      company.title,
+      company.slogan,
+      company.registeredTime,
+      company.description,
+      company.image,
+      company.rating.toString(),
+      company.subscribes,
+    ]);
+    log("Added to users.db");
+    statement.dispose();
+  }
 
   @override
-  void deleteCompany(String id) {}
+  void deleteCompany(String id) {
+    final statement = database.prepare('DELETE FROM $tableName WHERE id = ?');
+    statement.execute([id]);
+    statement.dispose();
+  }
 
   @override
   Company? getCompanyByEmail(String email) {
-    throw UnimplementedError();
+    final statement =
+        database.prepare('SELECT * FROM $tableName WHERE email = ?');
+    final results = statement.select([email]);
+    statement.dispose();
+    if (results.isNotEmpty) {
+      return Company.fromJson(results.first);
+    }
+    return null;
   }
 
   @override
   Company? getCompanyById(String id) {
-    throw UnimplementedError();
+    final statement = database.prepare('SELECT * FROM $tableName WHERE id = ?');
+    final results = statement.select([id]);
+    statement.dispose();
+    if (results.isNotEmpty) {
+      return Company.fromJson(results.first);
+    }
+    return null;
   }
 
   @override
   Company? getCompanyByPhoneNumber(String phoneNumber) {
-    throw UnimplementedError();
+    final statement =
+        database.prepare('SELECT * FROM $tableName WHERE phoneNumber = ?');
+    final results = statement.select([phoneNumber]);
+    statement.dispose();
+    if (results.isNotEmpty) {
+      return Company.fromJson(results.first);
+    }
+    return null;
   }
 
   @override
   Company? getCompanyByUsername(String username) {
-    throw UnimplementedError();
+    final statement =
+        database.prepare('SELECT * FROM $tableName WHERE username = ?');
+    final results = statement.select([username]);
+    statement.dispose();
+    if (results.isNotEmpty) {
+      return Company.fromJson(results.first);
+    }
+    return null;
   }
 
   @override
-  void updateCompany(Company company) {}
+  void updateCompany(Company company) {
+    final statement = database.prepare('''
+    UPDATE $tableName
+    SET username = ?, email = ?, password = ?, phoneNumber = ?, 
+      title = ?, slogan = ?, registeredTime = ?, description = ?, 
+      image = ?, rating = ?, subscribes = ?
+    WHERE id = ?
+  ''');
+
+    statement.execute([
+      company.username,
+      company.email,
+      company.password,
+      company.phoneNumber,
+      company.title,
+      company.slogan,
+      company.registeredTime,
+      company.description,
+      company.image,
+      company.rating.toString(),
+      company.subscribes,
+    ]);
+    log("Updated to users.db");
+    statement.dispose();
+  }
 }

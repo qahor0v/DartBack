@@ -4,6 +4,7 @@ import '../../constants/db_paths.dart';
 import '../../models/company_models/company_model.dart';
 
 abstract class CompanyDatabaseServicesBase {
+  final String tableName = 'companies';
   final database = sqlite3.open(DatabasePaths.companiesDbMain);
 
   void initDatabase();
