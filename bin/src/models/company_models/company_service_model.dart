@@ -34,7 +34,7 @@ class CompanyService {
       companyImage: json['companyImage'],
       url: json['url'],
       urlTitle: json['urlTitle'],
-      price: json['price'].toDouble(),
+      price: double.parse(json['price']),
     );
   }
 

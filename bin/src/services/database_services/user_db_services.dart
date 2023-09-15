@@ -111,4 +111,9 @@ class UserDatabaseServices extends UserDatabaseServicesBase {
     }
     return null;
   }
+
+  @override
+  List<User> getUsers(int length) {
+    return <User>[];
+  }
 }

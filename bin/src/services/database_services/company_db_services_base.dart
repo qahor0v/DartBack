@@ -24,4 +24,6 @@ abstract class CompanyDatabaseServicesBase {
   Company? getCompanyByEmail(String email);
 
   Company? getCompanyById(String id);
+
+  List<Company> getCompanies(int length);
 }

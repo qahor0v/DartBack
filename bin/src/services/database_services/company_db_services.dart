@@ -77,13 +77,13 @@ class CompanyDatabaseServices extends CompanyDatabaseServicesBase {
 
   @override
   Company? getCompanyById(String id) {
-    final statement = database.prepare('SELECT * FROM $tableName WHERE id = ?');
-    final results = statement.select([id]);
-    statement.dispose();
-    if (results.isNotEmpty) {
-      return Company.fromJson(results.first);
-    }
-    return null;
+      final statement = database.prepare('SELECT * FROM $tableName WHERE id = ?');
+      final results = statement.select([id]);
+      statement.dispose();
+      if (results.isNotEmpty) {
+        return Company.fromJson(results.first);
+      }
+      return null;
   }
 
   @override
@@ -136,5 +136,10 @@ class CompanyDatabaseServices extends CompanyDatabaseServicesBase {
     ]);
     log("Updated to users.db");
     statement.dispose();
+  }
+
+  @override
+  List<Company> getCompanies(int length) {
+    return <Company>[];
   }
 }

@@ -22,4 +22,6 @@ abstract class UserDatabaseServicesBase {
   User? getUserByEmail(String email);
 
   User? getUserById(String id);
+
+  List<User> getUsers(int length);
 }
