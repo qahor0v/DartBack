@@ -6,6 +6,8 @@ class CompanyVideo {
   String thumbnail;
   String url;
   String createdTime;
+  int views;
+  int likes;
 
   CompanyVideo({
     required this.id,
@@ -15,11 +17,15 @@ class CompanyVideo {
     required this.thumbnail,
     required this.url,
     required this.createdTime,
+    required this.views,
+    required this.likes,
   });
 
   factory CompanyVideo.fromJson(Map<String, dynamic> json) {
     return CompanyVideo(
       id: json['id'],
+      views: json['views'],
+      likes: json['likes'],
       createdTime: json['createdTime'],
       title: json['title'],
       description: json['description'],
@@ -38,6 +44,8 @@ class CompanyVideo {
       'thumbnail': thumbnail,
       'url': url,
       'createdTime': createdTime,
+      'views': views,
+      'likes': likes,
     };
   }
 }

@@ -3,12 +3,16 @@ class CompanyContactItem {
   String startWork;
   String endWork;
   String url;
+  String companyID;
+  String id;
 
   CompanyContactItem({
     required this.name,
     required this.startWork,
     required this.endWork,
     required this.url,
+    required this.companyID,
+    required this.id,
   });
 
   Map<String, dynamic> toJson() {
@@ -17,6 +21,8 @@ class CompanyContactItem {
       'startWork': startWork,
       'endWork': endWork,
       'url': url,
+      'companyID': companyID,
+      'id': id,
     };
   }
 
@@ -26,6 +32,8 @@ class CompanyContactItem {
       startWork: jsonData['startWork'],
       endWork: jsonData['endWork'],
       url: jsonData['url'],
+      id: jsonData['id'],
+      companyID: jsonData['companyID'],
     );
   }
 }

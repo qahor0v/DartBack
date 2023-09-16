@@ -4,6 +4,7 @@ class CompanyImage {
   String description;
   String url;
   String createdTime;
+  int likes;
 
   CompanyImage({
     required this.id,
@@ -11,11 +12,13 @@ class CompanyImage {
     required this.description,
     required this.url,
     required this.createdTime,
+    required this.likes,
   });
 
   factory CompanyImage.fromJson(Map<String, dynamic> json) {
     return CompanyImage(
       id: json['id'],
+      likes: json['likes'],
       title: json['title'],
       description: json['description'],
       url: json['url'],
@@ -30,6 +33,7 @@ class CompanyImage {
       'description': description,
       'url': url,
       'createdTime': createdTime,
+      'likes': likes,
     };
   }
 }
