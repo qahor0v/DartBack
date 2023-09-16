@@ -44,4 +44,17 @@ class CompanyContactItemDatabase implements DatabaseFunctions {
       contactItem.id,
     ];
   }
+
+  @override
+  List<Object> paramsForUpdate(object) {
+    CompanyContactItem contactItem = object as CompanyContactItem;
+    return [
+      contactItem.name,
+      contactItem.startWork,
+      contactItem.endWork,
+      contactItem.url,
+      contactItem.companyID,
+      contactItem.id,
+    ];
+  }
 }

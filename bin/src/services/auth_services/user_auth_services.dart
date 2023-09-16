@@ -147,8 +147,8 @@ class UserAuthServices implements UserAuthServicesBase {
     );
     services.update(
       database: database,
-      functionText: usersDatabase.add(),
-      params: usersDatabase.params(user),
+      functionText: usersDatabase.update(),
+      params: usersDatabase.paramsForUpdate(user),
     );
     return CustomException(
       statusCode: 707,

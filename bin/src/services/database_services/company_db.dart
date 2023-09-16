@@ -60,4 +60,23 @@ class CompanyDatabase implements DatabaseFunctions {
       company.subscribes,
     ];
   }
+
+  @override
+  List<Object> paramsForUpdate(object) {
+    Company company = object as Company;
+    return [
+      company.username,
+      company.email,
+      company.password,
+      company.phoneNumber,
+      company.title,
+      company.slogan,
+      company.registeredTime,
+      company.description,
+      company.image,
+      company.rating.toString(),
+      company.subscribes,
+      company.id,
+    ];
+  }
 }

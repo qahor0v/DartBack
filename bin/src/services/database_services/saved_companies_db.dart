@@ -42,4 +42,16 @@ class SavedCompaniesDatabase implements DatabaseFunctions {
       savedCompanies.companyImage,
     ];
   }
+
+  @override
+  List<Object> paramsForUpdate(object) {
+    SavedCompanies savedCompanies = object as SavedCompanies;
+    return [
+      savedCompanies.userID,
+      savedCompanies.companyID,
+      savedCompanies.companyTitle,
+      savedCompanies.companyImage,
+      savedCompanies.id,
+    ];
+  }
 }

@@ -40,4 +40,15 @@ class CompanyCategoryDatabase implements DatabaseFunctions {
       category.title,
     ];
   }
+
+  @override
+  List<Object> paramsForUpdate(object) {
+    CompanyCategory category = object as CompanyCategory;
+    return [
+      category.icon,
+      category.description,
+      category.title,
+      category.id,
+    ];
+  }
 }

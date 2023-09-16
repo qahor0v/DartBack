@@ -9,8 +9,8 @@ void main() {
 
 void testSignUp() {
   User user = User(
-    id: IdServices.shortID(),
-    lastName: "Qahorov",
+    id: "YDWwSCfp2023916204251344755",
+    lastName: "Zafarovich",
     firstName: "Zamon",
     email: "aemail@gmail.com",
     password: "123456",
@@ -23,7 +23,7 @@ void testSignUp() {
 
   UserAuthServices services = UserAuthServices();
 
-  final result = services.signIn(signIn);
+  final result = services.updateUserData(user);
 
   print(result.title);
 }

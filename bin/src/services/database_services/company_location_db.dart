@@ -42,4 +42,16 @@ class CompanyLocationDatabase implements DatabaseFunctions {
       location.orientr,
     ];
   }
+
+  @override
+  List<Object> paramsForUpdate(object) {
+    CompanyLocation location = object as CompanyLocation;
+    return [
+      location.description,
+      location.lon,
+      location.lat,
+      location.orientr,
+      location.title,
+    ];
+  }
 }

@@ -63,4 +63,20 @@ class CompanyVideoDatabase implements DatabaseFunctions {
       video.likes,
     ];
   }
+
+  @override
+  List<Object> paramsForUpdate(object) {
+    CompanyVideo video = object as CompanyVideo;
+    return [
+      video.title,
+      video.description,
+      video.duration,
+      video.thumbnail,
+      video.url,
+      video.createdTime,
+      video.views,
+      video.likes,
+      video.id,
+    ];
+  }
 }

@@ -50,4 +50,19 @@ class UsersDatabase implements DatabaseFunctions {
       user.profileRegisterTime,
     ];
   }
+
+  @override
+  List<Object> paramsForUpdate(dynamic object) {
+    User user = object as User;
+    return [
+      user.lastName,
+      user.firstName,
+      user.email,
+      user.password,
+      user.phoneNumber,
+      user.profileImage,
+      user.profileRegisterTime,
+      user.id,
+    ];
+  }
 }

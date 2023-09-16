@@ -47,4 +47,18 @@ class SavedServicesDatabase implements DatabaseFunctions {
       savedServices.serviceImage,
     ];
   }
+
+  @override
+  List<Object> paramsForUpdate(object) {
+    SavedServices savedServices = object as SavedServices;
+    return [
+      savedServices.userID,
+      savedServices.companyID,
+      savedServices.companyTitle,
+      savedServices.serviceID,
+      savedServices.serviceTitle,
+      savedServices.serviceImage,
+      savedServices.id,
+    ];
+  }
 }

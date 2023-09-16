@@ -49,4 +49,16 @@ class CompanyUserQuestionsDatabase implements DatabaseFunctions {
       questions.answerText,
     ];
   }
+
+  @override
+  List<Object> paramsForUpdate(object) {
+    CompanyUserQuestions questions = object as CompanyUserQuestions;
+    return [
+      questions.questionTitle,
+      questions.answerTitle,
+      questions.questionText,
+      questions.answerText,
+      questions.id,
+    ];
+  }
 }

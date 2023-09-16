@@ -55,4 +55,21 @@ class CompanyServicesDatabase implements DatabaseFunctions {
       service.price,
     ];
   }
+
+  @override
+  List<Object> paramsForUpdate(object) {
+    CompanyService service = object as CompanyService;
+    return [
+      service.title,
+      service.image,
+      service.description,
+      service.companyID,
+      service.companyName,
+      service.companyImage,
+      service.url,
+      service.urlTitle,
+      service.price,
+      service.id,
+    ];
+  }
 }

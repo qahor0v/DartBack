@@ -44,4 +44,17 @@ class RatingModelDatabase implements DatabaseFunctions {
       ratingModel.username,
     ];
   }
+
+  @override
+  List<Object> paramsForUpdate(object) {
+    RatingModel ratingModel = object as RatingModel;
+    return [
+      ratingModel.message,
+      ratingModel.rating,
+      ratingModel.userImage,
+      ratingModel.userID,
+      ratingModel.username,
+      ratingModel.id,
+    ];
+  }
 }

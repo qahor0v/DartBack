@@ -44,4 +44,17 @@ class CompanyImageDatabase implements DatabaseFunctions {
       image.likes,
     ];
   }
+
+  @override
+  List<Object> paramsForUpdate(object) {
+    CompanyImage image = object as CompanyImage;
+    return [
+      image.title,
+      image.description,
+      image.url,
+      image.createdTime,
+      image.likes,
+      image.id,
+    ];
+  }
 }

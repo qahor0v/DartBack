@@ -8,4 +8,6 @@ abstract class DatabaseFunctions {
   String update();
 
   List<Object> params(dynamic object);
+
+  List<Object> paramsForUpdate(dynamic object);
 }
