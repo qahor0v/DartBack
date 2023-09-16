@@ -1,7 +1,8 @@
 import 'dart:math';
 
 class IdServices {
-  static const String symbols = "qwertyuiopasdfghjklzxcvbnm1234567890";
+  static const String symbols =
+      "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890";
   static final Random random = Random();
 
   static String now() {
@@ -27,6 +28,14 @@ class IdServices {
       string += symbols[random.nextInt(symbols.length)];
     }
     string += now();
+    return string;
+  }
+
+  static String token() {
+    String string = "";
+    for (int i = 0; i < 64; i++) {
+      string += symbols[random.nextInt(symbols.length)];
+    }
     return string;
   }
 }

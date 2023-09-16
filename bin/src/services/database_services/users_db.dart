@@ -40,6 +40,7 @@ class UsersDatabase implements DatabaseFunctions {
   List<Object> params(dynamic object) {
     User user = object as User;
     return [
+      user.id,
       user.lastName,
       user.firstName,
       user.email,
@@ -47,7 +48,6 @@ class UsersDatabase implements DatabaseFunctions {
       user.phoneNumber,
       user.profileImage,
       user.profileRegisterTime,
-      user.id,
     ];
   }
 }
