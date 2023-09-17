@@ -1,6 +1,6 @@
-void toTry(void Function() function) {
+void toTry(Future<void> Function() function) async {
   try {
-    function;
+    await function();
   } catch (e) {
     print(e);
   }

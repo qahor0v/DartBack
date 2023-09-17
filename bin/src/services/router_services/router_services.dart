@@ -4,14 +4,29 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 import 'package:shelf/shelf_io.dart' as io;
 
+import '../../utils/custom_try_catch.dart';
+
 class RouterServices {
-  Future<void> testServer(String message) async {
-    final router = Router();
-    router.get('/api/test/', (Request request) {
-      return Response.ok(jsonEncode({"message": message}),
-          headers: {"Content-Type": "application/json"});
+  Map<String, String> jsonHeaders = {"Content-Type": "application/json"};
+
+  Future<void> runServer() async {
+    toTry(() async {
+      final router = Router();
+      await testServer(router);
+      await io.serve(router, 'localhost', 8080);
     });
-    var server = await io.serve(router, 'localhost', 8080);
-    print(server.serverHeader);
   }
+
+  Future<void> testServer(Router router) async {
+    toTry(() async {
+       final response = jsonEncode({"message": "Server is working...!"});
+      router.post('/api/auth/', (Request request) {
+        return Response.ok(response, headers: jsonHeaders);
+      });
+    });
+  }
+
+
+
+
 }
