@@ -26,6 +26,12 @@ class CustomException {
     token: "",
   );
 
+  static final CustomException usernameAlreadyHave = CustomException(
+    statusCode: 702,
+    title: "Bu username allaqachon mavjud",
+    token: "",
+  );
+
   static CustomException signedIn(String token) => CustomException(
         statusCode: 797,
         title: "Hisobga muvaffaqiyatli kirildi",

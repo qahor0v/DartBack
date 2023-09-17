@@ -139,19 +139,58 @@ class CompanyAuthServices implements CompanyAuthServicesBase {
 
   @override
   CustomException signUp(Company company) {
-    // TODO: implement signUp
-    throw UnimplementedError();
+    if (checkUsername(company.username)) {
+      if (checkCompany(company)) {
+        CompanyDatabase companyDatabase = CompanyDatabase();
+        DatabaseServices services = DatabaseServices();
+        Database database = services.openDatabase(
+          DatabasePaths.companiesDbMain,
+        );
+
+        services.initDatabase(
+          database: database,
+          functionText: companyDatabase.init(),
+        );
+
+        services.add(
+          database: database,
+          functionText: companyDatabase.add(),
+          params: companyDatabase.params(company),
+        );
+
+        return CustomException.registered(company.id);
+      } else {
+        return CustomException.alreadyHave;
+      }
+    } else {
+      return CustomException.usernameAlreadyHave;
+    }
   }
 
   @override
   CustomException updateCompanyData(Company company) {
-    // TODO: implement updateCompanyData
-    throw UnimplementedError();
+    CompanyDatabase companyDatabase = CompanyDatabase();
+    DatabaseServices services = DatabaseServices();
+    Database database = services.openDatabase(
+      DatabasePaths.companiesDbMain,
+    );
+
+    services.initDatabase(
+      database: database,
+      functionText: companyDatabase.init(),
+    );
+
+    services.add(
+      database: database,
+      functionText: companyDatabase.update(),
+      params: companyDatabase.params(company),
+    );
+
+    return CustomException.updated(company.id);
   }
 
   @override
   CustomException verifyCompany(String companyID) {
-    // TODO: implement verifyCompany
     throw UnimplementedError();
   }
 }
