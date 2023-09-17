@@ -1,3 +1,5 @@
+// ignore_for_file: empty_catches
+
 import 'package:sqlite3/sqlite3.dart';
 import 'database_services_base.dart';
 
@@ -101,11 +103,13 @@ class DatabaseServices implements DatabaseServicesBase {
     required String tableName,
     required String companyID,
   }) {
-    final statement = database.prepare(
-      'DELETE FROM $tableName WHERE companyID = ?',
-    );
-    statement.execute([companyID]);
-    print("Deleted!");
-    statement.dispose();
+    try {
+      final statement = database.prepare(
+        'DELETE FROM $tableName WHERE companyID = ?',
+      );
+      statement.execute([companyID]);
+      print("Deleted!");
+      statement.dispose();
+    } catch (e) {}
   }
 }

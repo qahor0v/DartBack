@@ -107,6 +107,13 @@ class CompanyAuthServices implements CompanyAuthServicesBase {
       parameter: signIN.login,
     );
 
+    final checkUsername = services.get(
+      database: database,
+      tableName: companyDatabase.tableName,
+      parameterString: 'username',
+      parameter: signIN.login,
+    );
+
     final checkPhone = services.get(
       database: database,
       tableName: companyDatabase.tableName,
@@ -116,6 +123,14 @@ class CompanyAuthServices implements CompanyAuthServicesBase {
 
     if (checkEmail != null) {
       Company kCompany = Company.fromJson(checkEmail);
+      company = kCompany;
+      if (kCompany.password == signIN.password) {
+        check = true;
+      }
+    }
+
+    if (checkUsername != null) {
+      Company kCompany = Company.fromJson(checkUsername);
       company = kCompany;
       if (kCompany.password == signIN.password) {
         check = true;

@@ -1,28 +1,32 @@
-import 'src/models/user_models/user_model.dart';
+import 'src/models/company_models/company_model.dart';
 import 'src/models/user_models/user_sign_in.dart';
-import 'src/services/auth_services/user_auth_services.dart';
- 
+import 'src/services/auth_services/company_auth_services.dart';
+import 'src/utils/id_generator.dart';
+
 void main() {
   testSignUp();
 }
 
 void testSignUp() {
-  User user = User(
-    id: "YDWwSCfp2023916204251344755",
-    lastName: "Qahorov",
-    firstName: "Zamon",
-    email: "mail@gmail.com",
-    password: "123456",
-    phoneNumber: "99891",
-    profileImage: "http://image",
-    profileRegisterTime: "${DateTime.now()}",
+  CompanyAuthServices authServices = CompanyAuthServices();
+  Company company = Company(
+    id: IdServices.token(),
+    username: "username",
+    password: "123",
+    title: "The Company Title",
+    slogan: "The Company Slogan",
+    registeredTime: "${DateTime.now()}",
+    description: "Lorem Ipsum Dolor",
+    image: "http://image",
+    rating: 4.5,
+    subscribes: 119,
+    email: "email@gmail.com",
+    phoneNumber: "+99891",
   );
 
-  UserSignIn signIn = UserSignIn(login: "99891", password: "123456");
+  UserSignIn signIn = UserSignIn(login: "+998912452810", password: "123");
 
-  UserAuthServices services = UserAuthServices();
-
-  final result = services.signIn(signIn);
+  final result = authServices.signIn(signIn);
 
   print(result.title);
 }
