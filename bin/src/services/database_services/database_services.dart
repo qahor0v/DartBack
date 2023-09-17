@@ -95,4 +95,17 @@ class DatabaseServices implements DatabaseServicesBase {
   }
 
   Database openDatabase(String path) => sqlite3.open(path);
+
+  void deleteByCompanyID({
+    required Database database,
+    required String tableName,
+    required String companyID,
+  }) {
+    final statement = database.prepare(
+      'DELETE FROM $tableName WHERE companyID = ?',
+    );
+    statement.execute([companyID]);
+    print("Deleted!");
+    statement.dispose();
+  }
 }

@@ -48,11 +48,7 @@ class UserAuthServices implements UserAuthServicesBase {
       tableName: usersDatabase.tableName,
       id: userID,
     );
-    return CustomException(
-      statusCode: 700,
-      title: "Hisob muvaffaqiyatli o'chirildi!",
-      token: "",
-    );
+    return CustomException.deleted;
   }
 
   @override
@@ -97,17 +93,9 @@ class UserAuthServices implements UserAuthServicesBase {
     }
 
     if (check) {
-      return CustomException(
-        statusCode: 797,
-        title: "Hisobga muvaffaqiyatli kirildi",
-        token: signedUser!.id,
-      );
+      return CustomException.signedIn(signedUser!.id);
     } else {
-      return CustomException(
-        statusCode: 713,
-        title: "Hisob mavjud emas!",
-        token: signedUser!.id,
-      );
+      return CustomException.notFound;
     }
   }
 
@@ -126,11 +114,7 @@ class UserAuthServices implements UserAuthServicesBase {
         functionText: usersDatabase.add(),
         params: usersDatabase.params(user),
       );
-      return CustomException(
-        statusCode: 777,
-        title: "Hisob muvaffaqiyatli ro'yxatga olindi!",
-        token: user.id,
-      );
+      return CustomException.registered(user.id);
     } else {
       return CustomException.alreadyHave;
     }
@@ -150,10 +134,6 @@ class UserAuthServices implements UserAuthServicesBase {
       functionText: usersDatabase.update(),
       params: usersDatabase.paramsForUpdate(user),
     );
-    return CustomException(
-      statusCode: 707,
-      title: "Hisob ma'lumotlari muvaffaqiyatli yangilandi!",
-      token: user.id,
-    );
+    return CustomException.updated(user.id);
   }
 }

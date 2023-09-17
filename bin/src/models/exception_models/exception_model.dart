@@ -25,4 +25,34 @@ class CustomException {
     title: "User allaqachon mavjud",
     token: "",
   );
+
+  static CustomException signedIn(String token) => CustomException(
+        statusCode: 797,
+        title: "Hisobga muvaffaqiyatli kirildi",
+        token: token,
+      );
+
+  static final CustomException notFound = CustomException(
+    statusCode: 713,
+    title: "Hisob mavjud emas!",
+    token: "",
+  );
+
+  static final CustomException deleted = CustomException(
+    statusCode: 700,
+    title: "Tashkilot o'chirildi!",
+    token: '',
+  );
+
+  static CustomException registered(String token) => CustomException(
+        statusCode: 777,
+        title: "Hisob muvaffaqiyatli ro'yxatga olindi!",
+        token: token,
+      );
+
+  static CustomException updated(String token) => CustomException(
+        statusCode: 707,
+        title: "Hisob ma'lumotlari muvaffaqiyatli yangilandi!",
+        token: token,
+      );
 }
