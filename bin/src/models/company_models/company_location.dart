@@ -4,6 +4,7 @@ class CompanyLocation {
   double lon;
   double lat;
   String orientr;
+  String companyID;
 
   CompanyLocation({
     required this.title,
@@ -11,6 +12,7 @@ class CompanyLocation {
     required this.lon,
     required this.lat,
     required this.orientr,
+    required this.companyID,
   });
 
   factory CompanyLocation.fromJson(Map<String, dynamic> json) {
@@ -20,6 +22,7 @@ class CompanyLocation {
       lon: json['lon'].toDouble(),
       lat: json['lat'].toDouble(),
       orientr: json['orientr'],
+      companyID: json['companyID'],
     );
   }
 
@@ -30,6 +33,7 @@ class CompanyLocation {
       'lon': lon,
       'lat': lat,
       'orientr': orientr,
+      'companyID': companyID,
     };
   }
 }

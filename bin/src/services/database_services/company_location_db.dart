@@ -8,7 +8,7 @@ class CompanyLocationDatabase implements DatabaseFunctions {
   @override
   String add() => '''
     INSERT INTO $tableName (
-      title, description, lon, lat, orientr
+      title, description, lon, lat, orientr, companyID
     )
     VALUES (?, ?, ?, ?, ?)
   ''';
@@ -20,15 +20,16 @@ class CompanyLocationDatabase implements DatabaseFunctions {
       description TEXT,
       lon REAL,
       lat REAL,
-      orientr TEXT
+      orientr TEXT,
+      companyID TEXT
     )
   ''';
 
   @override
   String update() => '''
     UPDATE $tableName
-    SET description = ?, lon = ?, lat = ?, orientr = ?
-    WHERE title = ?
+    SET title = ?, description = ?, lon = ?, lat = ?, orientr = ?,
+    WHERE companyID = ?
   ''';
 
   @override
@@ -40,6 +41,7 @@ class CompanyLocationDatabase implements DatabaseFunctions {
       location.lon,
       location.lat,
       location.orientr,
+      location.companyID,
     ];
   }
 
@@ -47,11 +49,12 @@ class CompanyLocationDatabase implements DatabaseFunctions {
   List<Object> paramsForUpdate(object) {
     CompanyLocation location = object as CompanyLocation;
     return [
+      location.title,
       location.description,
       location.lon,
       location.lat,
       location.orientr,
-      location.title,
+      location.companyID,
     ];
   }
 }
