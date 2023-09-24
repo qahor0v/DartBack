@@ -14,6 +14,7 @@ class RouterServices {
       final router = Router();
       await testServer(router);
       await userRouterServices.signIn(router);
+      await userRouterServices.signUp(router);
       await io.serve(router, 'localhost', 8080);
     });
   }
